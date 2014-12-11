@@ -1,0 +1,6 @@
+/Users/tech/Desktop/disis.aka.wiiremote_1.03/wiiremote.c: In function 'wiiremote_init':
+/Users/tech/Desktop/disis.aka.wiiremote_1.03/wiiremote.c:50: error: 'struct _WiiRemoteRec' has no member named 'jitteroffset'
+/Users/tech/Desktop/disis.aka.wiiremote_1.03/wiiremote.c: In function 'setJitteroffset':
+/Users/tech/Desktop/disis.aka.wiiremote_1.03/wiiremote.c:128: error: 'struct _WiiRemoteRec' has no member named 'jitteroffset'
+/Users/tech/Desktop/disis.aka.wiiremote_1.03/wiiremote.c: In function 'handleExtensionData':
+/Users/tech/Desktop/disis.aka.wiiremote_1.03/wiiremote.c:686: error: 'struct _WiiRemoteRec' has no member named 'jitteroffset'
