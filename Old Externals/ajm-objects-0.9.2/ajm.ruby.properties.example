@@ -1,0 +1,27 @@
+########################
+# Options for ajm.ruby #
+########################
+
+# To use:
+# - Rename this file to ajm.ruby.properties
+# - Put it on the Max file search path
+# - Restart Max (and restart again each time you change this file)
+
+
+ruby.loadpaths =
+# A semicolon-separated list of absolute paths to append to the default $LOAD_PATH.
+# You can use this to add gems or other projects installed elsewhere.
+# Default value is nothing.
+
+
+# jruby.home = /Users/adam/bin/jruby-1.5.2
+# If you want to install a lot of gems: instead of adding a loadpath for each one, 
+# you can install them into a separate jruby installation and set jruby.home to
+# run ajm.ruby against that jruby instead of the built-in one.
+# This variable is not set by default.
+
+
+ruby.initializers = ajm_ruby_initialize.rb
+# A semicolon-separated list of files. 
+# These files will be run in the order listed whenever a new ajm.ruby context is initialized.
+# Default value is ajm_ruby_initialize.rb

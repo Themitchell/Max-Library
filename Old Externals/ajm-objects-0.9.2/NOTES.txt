@@ -1,0 +1,77 @@
+         
+                      ajm objects for Max/MSP
+         
+                           Version 0.9.2
+         
+         http://compusition.com/web/software/maxmsp/ajm-objects
+          
+                   Adam Murray (adam@compusition.com)
+
+
+See INSTALL.txt for installation instructions
+------------------------------------------------------------------------------
+
+NOTES
+
+Sequencing with good timing
+  When using a [metro] or [ajm.metro] to sequence music, you should enable
+  Overdrive from Max's Options menu. If Overdrive is not enabled, interacting
+  with your Max patch (clicking a GUI object) can cause timing delays and ruin
+  the sense of rhythm. This is normal Max scheduler behavior, so this advice
+  applies whenever you need good timing from [metro].
+
+------------------------------------------------------------------------------
+
+SOURCE CODE
+
+ajm objects is an open source project. The source code is located at:
+http://github.com/adamjmurray/ajm_objects
+
+Feel free to hack away at it, contribute features, or whatever you want.
+Just mind my copyright and give credit where credit is due.
+
+------------------------------------------------------------------------------
+
+DEPENDENCIES
+
+JRuby (http://jruby.codehaus.org/)
+  The 100% Java implementation of Ruby. 
+  JRuby in turn depends on other libraries. I included the license info
+  for bsf.jar under the license folder. You can find license info for
+  the Ruby language at:
+    http://www.ruby-lang.org/en/LICENSE.txt
+    http://www.ruby-lang.org/en/COPYING.txt
+
+midilib (http://midilib.rubyforge.org/)
+  A Ruby MIDI library for reading and writing MIDI files. 
+  Used by ajm.midi2coll
+    
+------------------------------------------------------------------------------    
+
+Copyright (c) 2008-2010, Adam Murray (adam@compusition.com). 
+ 
+All rights reserved.
+
+Redistribution and use of ajm objects in source and binary forms, with or
+without modification, are permitted provided that the following conditions
+are met:
+
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in
+   the documentation and/or other materials provided with the
+   distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
