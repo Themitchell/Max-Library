@@ -1,0 +1,268 @@
+{\rtf1\mac\ansicpg10000\cocoartf824\cocoasubrtf480
+{\fonttbl\f0\fswiss\fcharset77 Helvetica-Bold;\f1\fswiss\fcharset77 Helvetica;\f2\fswiss\fcharset77 Helvetica-Oblique;
+\f3\fnil\fcharset77 LucidaGrande;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww14260\viewh16280\viewkind1\viewscale75
+\deftab720
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0\qc
+
+\f0\b\fs34 \cf0 \ul \ulc0 Setting up an Exam using Audition-and-Decide.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0\ql\qnatural
+
+\f1\b0 \cf0 \ulnone \
+\
+audition-and-decide-I
+\fs24  \
+\
+Overview: Instructor or student loads a pre-made exam file which  installs a sound library and a multiple choice question set .  Sounds are accessed randomly and each question is tailored to the sound.   The goal is to encourage and train various forms of analytical listening to sound -- sound sources, modes of excitation, frequency domain aspects, time domain aspects.\
+\
+format of exam: \
+- user advances the patch, revealing one question at a time.\
+- each question begs details of a given sound; a number of options are shown (must select at least one "correct answer"), and then user submits this answer.\
+- if the user is partially right, they are notified that there may be more options to select.\
+- if the user is wholly wrong, they are notified that they should try again.  if they are wrong again, they are invited to choose a similar sound from the collection.\
+- if the user is completely right ("nails" it), they are notified and are not able to select anything more until they advance to a new sound question choice\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0\ql\qnatural
+
+\f2\i\fs26 \cf0 \ul editing (administrating) an exam:\
+\
+\ulnone To create an exam the builder must have: 1) a set of soundfiles (stereo or mono) in .aif, or .wav format, 2) a "collection" text file that lists the sound file names, and 3) an "admin" text file for that describes the questions and answers for the exam.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ql\qnatural\pardirnatural
+\cf0 \
+THE ADMIN TEXT FILE  (example name:  
+\f3\i0\fs24 _harmonic-inharmonic_admin.txt)
+\f1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0\ql\qnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0\ql\qnatural
+
+\f0\b \cf0 /textcoll, mycollfile.txt;  (example name:  
+\f3\b0 harm-inharm-noise-coll.txt)
+\f1 \
+\
+this specifies which collection of sounds you will be accessing.\
+\
+
+\f0\b /textmessage, "description of your exam and global instructions/information";
+\f1\b0 \
+\
+this message will be posted in the top message banner of the software when the exam set is loaded.\
+		\
+
+\f0\b /all-options/<number>, "the sound might be like the text i am writing."; 
+\f1\b0 \
+\
+this series of messages (/1 /2 etc) form the complete set of  questions that can be assigned to any sound. They will be posted in the question window with each sound. \
+\
+
+\f0\b /all-reasons/<number>, "a sound like x is y";
+\f1\b0 \
+\
+this series of messages (/1 /2 etc) are meant to be used as reasons that can be issued in response to a user's input. Given a correct answer, the user can see why exactly it is right, or if wrong how they could improve based on the response, etc.\
+\
+
+\f0\b 1, "my sound.aif" /options "2 1 5" /corr "1 3" /mostcorr 1 /reason 5; 
+\f1\b0 \
+\
+the numbered items in your admin file (like the one shown above) are what define each question you fill out for the student / user.  they should be first copied from your collection file and then expanded upon.\
+\
+the first two portions...\
+
+\f0\b "1, somesound.aif"\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0\ql\qnatural
+
+\f1\b0 \cf0 \
+...must match exactly what you have in each item for your collection\
+\
+the 3rd portion...\
+/options "2 1 5" \
+...are more arbitrary.  What you are doing here is defining the items (questions or things to identify) that the student sees when they "choose a new sound".\
+more specifically, these are the options they are presented with for selection.  You can use a variable number of elements for this list, all enclosed in quotes, or you can choose a single element which doesn't require quotes (although this wouldn't produce a variety of options).\
+\
+the 4th portion...\
+/corr "1 3" \
+...is slightly different.  This list refers to the /options list you just created for the current sound by element id.\
+more specifically, 3 would refer to option 5, whereas 1 would refer to option 2.\
+\
+the 5th portion...\
+/mostcorr n\
+is simply specifying which element from your options is most correct.  again, you're defining this id from your options list for that sound, not for anything else.  This information is used when the student requests to hear another sound similar to one they just heard.\
+\
+the 6th portion...\
+/reason <number>\
+this defines a reason that the student sees no matter if their answer is completely correct or incorrect.  if their answer is partially correct, they will see that they could select more options for a correct answer.  \
+\
+EXAMPLE of A complete Admin file....\
+\
+\
+\
+\
+\
+\
+/textcoll, harm-inharm-noise-coll.txt; \
+/textmessage, "Each of the sound files in this group can be categorized as being mostly harmonic, mostly inharmonic, mostly noise -- real music features a combination of all these things at varying levels of influence"; \
+\
+/all-options/1, "mostly harmonic"; \
+\
+/all-options/2, "mostly inharmonic";\
+\
+/all-options/3, "mostly noise"; \
+\
+\
+\
+/all-reasons/1, "harmonic sounds need resonance or sustain. There is a strong fundamental frequency and feature partials/overtones that are roughly whole number multiples of the fundamental (thus harmonic). Pitches played on a flute, clarinet, or piano are considered harmonic, even when certain partials don't conform to the norm."; \
+\
+/all-reasons/2, "inharmonic sounds depend on resonance or sustain. The loudness of the fundamental frequency relative to the other partials can be strong or weak. Higher partials are often strong in energy and ring out. Instability or beating patterns are common with inharmonic sounds. Most bells, gongs, and cymbals are strongly inharmonic.";\
+\
+/all-reasons/3, "noise is aperiodic and involves a saturation of the frequency domain of one sort or another.  Noise can be colored and centered in certain frequency bands, but there is no clear fundamental frequency nor apparent partials/overtones. Examples include: wind, rain, breath, waterfalls, digital hiss"; \
+\
+/all-reasons/4, "sometimes it is difficult to separate elements of sound but listening carefully to the resonance can be a strong clue";\
+\
+/all-reasons/5, "This sound is approaching the definition of noise, but it still has aspects of inharmonicity.  It has a fundamental frequency, but it is hard to hear.  The sound is so rich in partials and energy that it becomes borderline between inharmonic and noise";\
+\
+\
+1, "18-h-in-nse.aif"  /options "1 2 3" /corr "2" /mostcorr 2 /reason 2;\
+2, "17-h-in-nse.aif" /options "1 2 3" /corr "2"  /mostcorr 2 /reason 2;\
+3, "16-h-in-nse.aif" /options "1 2 3" /corr "2"  /mostcorr 2 /reason 2;\
+4, "15-h-in-nse.aif" /options "1 2 3" /corr "3"  /mostcorr 3 /reason 3;\
+5, "14-h-in-nse.aif" /options "1 2 3" /corr "2 3"  /mostcorr 2 /reason "2 5";\
+6, "12-h-in-nse.aif" /options "1 2 3" /corr "2"  /mostcorr 2 /reason 2;\
+7, "11-h-in-nse.aif" /options "1 2 3" /corr "2"  /mostcorr 2 /reason 2;\
+8, "10-h-in-nse.aif" /options "1 2 3" /corr "2"  /mostcorr 2 /reason 2;\
+9, "09-h-in-nse.aif" /options "1 2 3" /corr "3"  /mostcorr 3 /reason 3;\
+10, "07-h-in-nse.aif" /options "1 2 3" /corr "3"  /mostcorr 3 /reason 3;\
+11, "06-h-in-nse.aif" /options "1 2 3" /corr "1"  /mostcorr 1 /reason 1;\
+12, "05-h-in-nse.aif" /options "1 2 3" /corr "1"  /mostcorr 1 /reason 1;\
+13, "04-h-in-nse.aif" /options "1 2 3" /corr "1"  /mostcorr 1 /reason 1;\
+14, "03-exam.aif" /options "1 2 3 " /corr "3"  /mostcorr 3 /reason 3;\
+15, "02-harm-inharm.aif" /options "1 2 3" /corr "1"  /mostcorr 1 /reason 1;\
+16, "01-maresz.aif" /options "1 2 3" /corr "1 3"  /mostcorr 1 /reason "1 5";\
+17, "00-maresz.aif" /options "1 2 3" /corr "1"  /mostcorr 1 /reason 1;\
+18, "13-h-in-nse.wav" /options "1 2 3" /corr "2"  /mostcorr 2 /reason 2;\
+19, "08-h-in-nse.wav" /options "1 2 3" /corr "1"  /mostcorr 1 /reason 1;\
+20, "19-h-in-nse.aif" /options "1 2 3" /corr "2"  /mostcorr 2 /reason 2;\
+\
+\page 
+\fs34 audition-and-decide-II
+\fs24 \
+
+\fs34 \
+
+\fs24 purpose: this patch is meant to serve as an exam that is created by the max programmer.\
+the quiz consists of various questions that the user answers and in so doing, explores the sound collection.\
+\
+format of exam: \
+- user advances the patch, revealing one question at a time.\
+- each question has a number of ways to complete the sentence "the following sound is..."\
+- this sentence is completed in a variety of displayed options\
+- user chooses a number of options, and as they do so, they receive feedback affirming / disaffirming the correctness of their selections.  in this way, this second patch is more exploratory and non-commital.\
+- at any time, the user can click a button at the bottom left hand side of the window, allowing them to advance to a similar sound that falls into the category of the same group.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0\ql\qnatural
+
+\f2\i\fs26 \cf0 \ul editing (administrating) an exam:
+\fs24 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0\ql\qnatural
+
+\f1\i0 \cf0 \ulnone \
+1. put audition-and-decide-II, the lib folder, your sound files, and any supporting collection files (.txt format) in search path.\
+\
+2. make sure that whatever sounds you are using in the admin file as a reference ends with .txt and \
+contains a format < id, filename.aif > with "filename.aif" always either being a single symbol, \
+or a symbol enclosed in quotes (see audition_coll_ex.txt for an example).  \
+\
+3. in your admin file, fill out questions and answers to be used - use the audition-decide_admin I or II as a reference.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0\ql\qnatural
+
+\f0\b \cf0 /textcoll, mycollfile.txt;
+\f1\b0 \
+\
+this specifies which collection of sounds you will be accessing.\
+\
+
+\f0\b /textmessage, "some description of your exam.";
+\f1\b0 \
+\
+this message will load up when you open your admin file for the group of students to use.\
+it is meant to be a heading that describes the exam given.\
+		\
+
+\f0\b /all-options/n, "the sound might be like the text i am writing."; 
+\f1\b0 \
+\
+this series of messages (/1 /2 etc) are meant to be used as options that you can pull from for a given sound question.\
+fill out all of the options you'd like to use in the exam, and pull from them later on as you fill out the questions.\
+\
+
+\f0\b /all-reasons/n, "a sound like x is y";
+\f1\b0 \
+\
+this series of messages (/1 /2 etc) are meant to be used as reasons that can be issued in response to a user's input.\
+if they get a given selection right, they can see why exactly it is right, or if wrong how they could improve based on the response, etc.\
+\
+
+\f0\b 1, "my sound.aif" /options "1 2 3 4 5" /answers "0 1 1 0 0" /reasons "1 2 3 4 5" /mostcorr 1; \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0\ql\qnatural
+
+\f1\b0 \cf0 \
+the numbered items in your admin file (like the one shown above) are what define each question you fill out for the student / user.  they should be first copied from your collection file and then expanded upon.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0\ql\qnatural
+
+\f2\i \cf0 the first two portions:
+\f1\i0 \
+	<1, somesound.aif>\
+\
+...must match exactly what you have in each item for your collection.  Note that if the sound's filename contains spaces, you MUST enclose the name in quotes in both your coll and admin file references.  For each item, increment the number (e.g. 1, 2, etc) and demarcate options, answers, reasons, and which is most correct for a given group of answers.\
+\
+the 3rd portion...\
+	/options "2 1 5" \
+\
+...are more arbitrary.  What you are doing here is defining the items that the student sees when they "choose a new sound".\
+more specifically, these are the options they are presented with for selection.  You can use a variable number of elements for this list, all enclosed in quotes, or you can choose a single element which doesn't require quotes (although this wouldn't produce a variety of options).\
+\
+
+\f2\i the 4th portion...
+\f1\i0 \
+	/answers "0 1 0"\
+\
+...is slightly different.  This list refers to the /options list you just created for the current sound in a binary format.  The list should be of the same length as your options, but for each option you demarcate whether selecting that option would be correct (1) or incorrect (0).\
+\
+
+\f2\i the 5th portion...
+\f1\i0 \
+	/reasons "1 4 6"\
+\
+...allow you to give a reason for each selection that the student makes.  For example, if you have specified a reason for 4, you can use it arbitrarily (as shown above) for the 2nd answer the user comes across.  It need not be matched to the option.  It would be recommended of course to have a separate reason for each item, but if you wanted to omit a reason, you could simply create a "dummy selection" by doing the following:\
+	/all-reasons/5, " ";\
+\
+then referring to it like so:\
+	/reasons "1 5 4"\
+\
+
+\f2\i the 6th portion...
+\f1\i0 \
+	/mostcorr n\
+\
+is simply specifying which element from your options (for the current sound) is most correct.  again, you're defining this id from your options list for that sound, not for anything else.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0\ql\qnatural
+
+\f2\i \cf0 \ul General Familiarity:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\ri0\ql\qnatural
+
+\f1\i0 \cf0 \ulnone \
+* Try out the dummy files to get an idea of how this works...\
+	\
+	a) open up "audition-and-decide-I/II.maxpat" \
+	b) click on "Load Exam"\
+	c) locate the audition_decide_admin_I/II.txt file and choose it\
+	c* note how the main text for this section of sound files comes up on top\
+	e) click on "next" for the first question\
+	e* note how the answers come up in the window below- you can have a # answer/reason combos between 2 and 5\
+	f) the sound will play and you'll have some questions in front of you to answer.\
+	you can play the sound again by clicking on "play", or reset the exam.\
+	g) click on various answers and note that one is right; the others are wrong.  the text will be green if the answer is correct, and will be red if the answer is incorrect\
+}

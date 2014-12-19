@@ -1,0 +1,6 @@
+1, soft;
+2, louder;
+3, loud;
+4, loudest;
+5, pain;
+order, louder loud soft loudest pain;

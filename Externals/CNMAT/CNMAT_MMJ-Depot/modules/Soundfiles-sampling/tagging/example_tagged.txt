@@ -1,0 +1,1 @@
+1, name 05so6_strk_wr_02.aif len_ms 3362.42627 numchan 1 filetype int24 sonic_characteristics dark;2, name 04hm6_strk_br_02.aif len_ms 13388.639648 numchan 1 filetype int24 sonic_characteristics bright;
